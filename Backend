@@ -1,1 +1,29 @@
+//server.js
+
+const mysql = require('mysql');
+
+const pool = mysql.createPool({
+    host: "localhost",
+    user: "root",
+    password: "1234",
+    database: "yt_enterprise"
+});
+
+//Get all customers
+pool.query('SELECT * FROM yt_enterprise.customer', (err, res) => {
+    if (err) {
+        console.error(err);
+        return;
+    }
+    console.log(res);
+});
+
+//get a customer
+pool.query('SELECT * FROM yt_enterprise.customer where ID=3', (err, res) => {
+    if (err) {
+        console.error(err);
+        return;
+    }
+    console.log(res);
+});
 
