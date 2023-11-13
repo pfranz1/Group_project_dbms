@@ -3,10 +3,11 @@
 # Prerequisites
 Before running the project, ensure you have the following prerequisites installed on your system:
 
-•	Node.js - version 14 or higher.
-•	npm - This is included with Node.js.
-•	MySql- https://dev.mysql.com/downloads/
-•	Visual Studio Code - Used to develop the frontend and backend
+1.	Node.js - version 14 or higher.
+2.	npm - This is included with Node.js.
+3.	MySql- https://dev.mysql.com/downloads/
+4.	Visual Studio Code - Used to develop the frontend and backend
+
 
 
 # Group Project DBMS Backend
