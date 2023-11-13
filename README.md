@@ -34,7 +34,7 @@ Before getting started, ensure you have the following installed:
 
 mysql -u [your_mysql_username] -p yt_enterprise < yt_enterprise_dump.sql // replace 'your_mysql_username' with your actual username .
 
-##Configuration
+## Configuration
 
 Make sure to update the MySQL connection details in the Backend and CRUD operation file and rename it with 'server.js' in VS code, specifically:
 
@@ -44,6 +44,26 @@ const pool = mysql.createPool({
     password: "YOUR_MYSQL_PASSWORD", //your password
     database: "yt_enterprise"
 });
+
+## Usage
+
+
+1. Start the server, run this code:
+   node server.js
+
+2. Accessing the API
+
+To access the API and interact with the database, you can make HTTP requests to the following endpoints:
+
+•	Get All Customers:
+To retrieve a list of all customers, make a GET request to:
+http://localhost:3000/customers
+
+•	Get a Specific Customer:
+To retrieve a specific customer by their ID, make a GET request to:
+http://localhost:3000/customers/{3}
+
+
 
 
 
