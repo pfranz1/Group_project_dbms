@@ -24,16 +24,13 @@ Before getting started, ensure you have the following installed:
 
 ## Installation
 
-1. Clone this repository to your local machine.
+1. save dbms dump file in your downloaded Mysql workbench
 
-2. Navigate to the project directory:
+2. Install VS code, create folder in VS code. Name it as "Group_project_dbms"
+3. After creating folder, open terminal and install the required Node.js packages: npm install 
+4. To interact with Database, run this command:npm install sql
+5. Create a file in VS code as server.js, copy and paste the code in  "Backend and CRUD operations" file to server.js file.
 
-   ```bash
-   cd Group_project_dbms/backend
-3. Install the required Node.js packages: npm install
-4. Import the Database, run this command:
-
-mysql -u [your_mysql_username] -p yt_enterprise < yt_enterprise_dump.sql // replace 'your_mysql_username' with your actual username .
 
 ## Configuration
 
