@@ -5,6 +5,9 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+// Middleware for parsing JSON bodies
+app.use(express.json());
+
 const pool = mysql.createPool({
     host: "localhost",
     user: "root",
@@ -12,7 +15,7 @@ const pool = mysql.createPool({
     database: "yt_enterprise"
 });
 
-// Create an endpoint to get all customers
+// Get all customers
 app.get('/customers', (req, res) => {
     pool.query('SELECT * FROM yt_enterprise.customer', (err, results) => {
         if (err) {
@@ -24,7 +27,7 @@ app.get('/customers', (req, res) => {
     });
 });
 
-// Create an endpoint to get a specific customer by ID
+// Get a specific customer by ID
 app.get('/customers/:id', (req, res) => {
     const customerId = req.params.id;
     pool.query('SELECT * FROM yt_enterprise.customer WHERE ID = 3', [customerId], (err, results) => {
@@ -37,8 +40,43 @@ app.get('/customers/:id', (req, res) => {
     });
 });
 
+// Update a specific customer by ID
+app.put('/customers/:id', (req, res) => {
+    const customerId = req.params.id;
+    const { name, email, address } = req.body; // Assuming these are the fields you want to update
+
+    pool.query('UPDATE yt_enterprise.customer SET name = ?, email = ?, address = ? WHERE ID = ?', [name, email, address, customerId], (err, results) => {
+        if (err) {
+            console.error(err);
+            res.status(500).json({ error: 'Internal server error' });
+            return;
+        }
+        if (results.affectedRows === 0) {
+            res.status(404).json({ error: 'Customer not found' });
+            return;
+        }
+        res.json({ message: 'Customer updated successfully' });
+    });
+});
+
+// Delete a specific customer by ID
+app.delete('/customers/:id', (req, res) => {
+    const customerId = req.params.id;
+
+    pool.query('DELETE FROM yt_enterprise.customer WHERE ID = ?', [customerId], (err, results) => {
+        if (err) {
+            console.error(err);
+            res.status(500).json({ error: 'Internal server error' });
+            return;
+        }
+        if (results.affectedRows === 0) {
+            res.status(404).json({ error: 'Customer not found' });
+            return;
+        }
+        res.json({ message: 'Customer deleted successfully' });
+    });
+});
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
-
-
